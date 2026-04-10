@@ -1,32 +1,7 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 150);
-            });
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="contact"
-      ref={sectionRef}
       className="py-32 lg:py-40 bg-surface relative overflow-hidden"
     >
       {/* Background glow */}
@@ -36,28 +11,26 @@ export default function Contact() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center">
-        <div className="reveal">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-12 h-px bg-gold" />
-            <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
-              Contact
-            </span>
-            <div className="w-12 h-px bg-gold" />
-          </div>
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-12 h-px bg-gold" />
+          <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
+            Contact
+          </span>
+          <div className="w-12 h-px bg-gold" />
         </div>
 
-        <h2 className="reveal font-serif text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight mb-8">
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight mb-8">
           Let&apos;s Work{" "}
           <em className="font-serif italic text-gold">Together</em>
         </h2>
 
-        <p className="reveal text-lg text-text-secondary font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p className="text-lg text-text-secondary font-light max-w-2xl mx-auto mb-12 leading-relaxed">
           Whether you&apos;re looking for engineering expertise, interested in
           collaboration, or want to discuss an innovative idea &mdash;
           I&apos;d love to hear from you.
         </p>
 
-        <div className="reveal flex flex-col sm:flex-row items-center justify-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <a
             href="mailto:hello@olamccartney.com"
             className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-gold text-background text-sm font-semibold hover:bg-gold-light transition-colors duration-300"

@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
 const projects = [
   {
     title: "Engineering the Future",
@@ -60,31 +56,11 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function Projects() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="work" ref={sectionRef} className="py-32 lg:py-40 relative">
+    <section id="work" className="py-32 lg:py-40 relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20">
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-px bg-gold" />
@@ -109,22 +85,12 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="reveal group card-hover rounded-2xl border border-border overflow-hidden"
+              className="group card-hover rounded-2xl border border-border overflow-hidden"
             >
               {/* Image/Gradient Placeholder */}
               <div
                 className={`h-48 lg:h-56 bg-gradient-to-br ${project.gradient} relative`}
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-serif text-7xl font-bold text-foreground/[0.03] group-hover:text-foreground/[0.06] transition-colors duration-500 select-none">
-                    {project.category === "Book"
-                      ? "\u{1F4D6}"
-                      : project.category === "Patent"
-                        ? "\u{1F4DC}"
-                        : "\u{2699}\u{FE0F}"}
-                  </span>
-                </div>
-
                 {/* Year badge */}
                 <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-background/60 text-xs text-text-secondary">
                   {project.year}

@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
 const expertiseAreas = [
   {
     number: "01",
@@ -27,38 +23,14 @@ const expertiseAreas = [
 ];
 
 export default function Expertise() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 150);
-            });
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="expertise"
-      ref={sectionRef}
-      className="py-32 lg:py-40 bg-surface relative"
-    >
+    <section id="expertise" className="py-32 lg:py-40 bg-surface relative">
       {/* Subtle top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="reveal mb-20">
+        <div className="mb-20">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-px bg-gold" />
             <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
@@ -77,7 +49,7 @@ export default function Expertise() {
           {expertiseAreas.map((area) => (
             <div
               key={area.number}
-              className="reveal group card-hover rounded-2xl border border-border bg-surface-light p-8 lg:p-10 flex flex-col gap-6"
+              className="group card-hover rounded-2xl border border-border bg-surface-light p-8 lg:p-10 flex flex-col gap-6"
             >
               {/* Number */}
               <span className="font-serif text-5xl font-bold text-gold/20 group-hover:text-gold/40 transition-colors duration-300">
